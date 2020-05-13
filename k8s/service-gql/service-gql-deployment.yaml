@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-gql-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-gql
+  template:
+    metadata:
+      labels:
+        app: service-gql
+    spec:
+      containers:
+        - name: service-gql
+          image: ashniu123/thrift-graphql-demo-service-gql:v1
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "250m"
+          ports:
+            - containerPort: 3000
+          env:
+            - name: GRAPHQL_PORT
+              value: "3000"
+            - name: SERVICE_USER_HOST
+              value: service-user-cluster-ip
+            - name: SERVICE_USER_PORT
+              value: "9090"
+            - name: SERVICE_POST_HOST
+              value: service-post-cluster-ip
+            - name: SERVICE_POST_PORT
+              value: "9090"

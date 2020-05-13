@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-post-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-post
+  template:
+    metadata:
+      labels:
+        app: service-post
+    spec:
+      containers:
+        - name: service-post
+          image: ashniu123/thrift-graphql-demo-service-post:v1
+          args:
+            - -addr=:9090
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
+          ports:
+            - containerPort: 9090

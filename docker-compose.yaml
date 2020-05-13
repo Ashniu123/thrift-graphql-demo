@@ -1,0 +1,36 @@
+version: "3"
+services:
+  service-user:
+    build:
+      context: ./service-user
+      dockerfile: ./deployments/Dockerfile
+    restart: unless-stopped
+    command: -addr service-user:9090
+    ports:
+      - 9090:9090
+
+  service-post:
+    build:
+      context: ./service-post
+      dockerfile: ./deployments/Dockerfile
+    restart: unless-stopped
+    command: -addr service-post:9090
+    ports:
+      - 9091:9090
+
+  service-gql:
+    build:
+      context: ./service-gql
+      dockerfile: ./deployments/Dockerfile
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    depends_on:
+      - service-user
+      - service-post
+    environment:
+      - GRAPHQL_PORT=3000
+      - SERVICE_USER_HOST=service-user
+      - SERVICE_USER_PORT=9090
+      - SERVICE_POST_HOST=service-post
+      - SERVICE_POST_PORT=9090
