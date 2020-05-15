@@ -1,4 +1,3 @@
-// const thrift = require("thrift");
 const thrift = require("thrift");
 const PostService = require("../thrift/post/PostService");
 const logger = require("../utils/logger");

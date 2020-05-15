@@ -11,8 +11,7 @@ import (
 )
 
 var (
-	addr     = flag.String("addr", "localhost:9090", "Thrift Address to listen on")
-	httpAddr = flag.String("httpAddr", "localhost:8090", "HTTP Address to listen on")
+	addr = flag.String("addr", "localhost:9090", "Thrift Address to listen on")
 )
 
 var ApiVersion = 1
