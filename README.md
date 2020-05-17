@@ -1,5 +1,7 @@
 # Thrift GraphQL Demo
 
+**This repo is in my [blog post](https://www.nisheetsinvhal.com/microservices-thrift-nodejs-golang-graphql/).**
+
 This repo has 3 services
 
 - service-gql
